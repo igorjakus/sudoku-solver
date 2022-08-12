@@ -3,7 +3,7 @@ import numpy as np
 
 def sudoku(puzzle):
     # repeat until solved
-    while not is_solved(puzzle):
+    while 0 in puzzle:
         solve(puzzle)
     return puzzle
 
@@ -17,9 +17,6 @@ def solve(puzzle):
                 if len(nums) == 1:
                     # put that number
                     puzzle[y][x] = nums.pop()
-
-def is_solved(puzzle):
-    return 0 in puzzle
 
 def possibilities(puzzle, x , y):
     # EXCLUDE NUMBERS THAT ARE NOT POSSIBLE
