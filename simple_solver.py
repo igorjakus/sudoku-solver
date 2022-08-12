@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def sudoku(puzzle):
     # repeat until solved
     while not is_solved(puzzle):
@@ -16,11 +19,7 @@ def solve(puzzle):
                     puzzle[y][x] = nums.pop()
 
 def is_solved(puzzle):
-    for i in range(9):
-        for j in range(9):
-            if puzzle[j][i] == 0:
-                return False
-    return True
+    return 0 in puzzle
 
 def possibilities(puzzle, x , y):
     # EXCLUDE NUMBERS THAT ARE NOT POSSIBLE
@@ -42,16 +41,16 @@ def possibilities(puzzle, x , y):
     return possible_numbers
 
 
-import numpy as np
-
-a = [[5,3,0,0,7,0,0,0,0],
-     [6,0,0,1,9,5,0,0,0],
-     [0,9,8,0,0,0,0,6,0],
-     [8,0,0,0,6,0,0,0,3],
-     [4,0,0,8,0,3,0,0,1],
-     [7,0,0,0,2,0,0,0,6],
-     [0,6,0,0,0,0,2,8,0],
-     [0,0,0,4,1,9,0,0,5],
-     [0,0,0,0,8,0,0,7,9]]
-
-print(np.matrix(sudoku(a)))
+if __name__ == '__main__':    
+    arr = np.array([[5,3,0,0,7,0,0,0,0],
+                    [6,0,0,1,9,5,0,0,0],
+                    [0,9,8,0,0,0,0,6,0],
+                    [8,0,0,0,6,0,0,0,3],
+                    [4,0,0,8,0,3,0,0,1],
+                    [7,0,0,0,2,0,0,0,6],
+                    [0,6,0,0,0,0,2,8,0],
+                    [0,0,0,4,1,9,0,0,5],
+                    [0,0,0,0,8,0,0,7,9]])
+            
+    solved = sudoku(arr)
+    print(solved)
