@@ -1,22 +1,21 @@
 import numpy as np
 
 
-def sudoku(puzzle):
-    # repeat until solved
-    while 0 in puzzle:
-        solve(puzzle)
+def solve(puzzle):
+    while containsZero(puzzle):
+        for x in range(9):
+            for y in range(9):
+                # if unsolved square
+                if puzzle[y][x] == 0:
+                    # if there's one possible number
+                    nums = possibilities(puzzle, x, y)
+                    if len(nums) == 1:
+                        # put that number
+                        puzzle[y][x] = nums.pop()
     return puzzle
 
-def solve(puzzle):
-    for y in range(9):
-        for x in range(9):
-            # if unsolved square
-            if puzzle[y][x] == 0:
-                # if there's one possible number
-                nums = possibilities(puzzle, x, y)
-                if len(nums) == 1:
-                    # put that number
-                    puzzle[y][x] = nums.pop()
+def containsZero(array):
+    return any(0 in x for x in puzzle)
 
 def possibilities(puzzle, x , y):
     # EXCLUDE NUMBERS THAT ARE NOT POSSIBLE
@@ -38,16 +37,16 @@ def possibilities(puzzle, x , y):
     return possible_numbers
 
 
-if __name__ == '__main__':    
-    arr = np.array([[5,3,0,0,7,0,0,0,0],
-                    [6,0,0,1,9,5,0,0,0],
-                    [0,9,8,0,0,0,0,6,0],
-                    [8,0,0,0,6,0,0,0,3],
-                    [4,0,0,8,0,3,0,0,1],
-                    [7,0,0,0,2,0,0,0,6],
-                    [0,6,0,0,0,0,2,8,0],
-                    [0,0,0,4,1,9,0,0,5],
-                    [0,0,0,0,8,0,0,7,9]])
-            
-    solved = sudoku(arr)
-    print(solved)
+if __name__ == '__main__':
+    puzzle = [[5,3,0,0,7,0,0,0,0],
+            [6,0,0,1,9,5,0,0,0],
+            [0,9,8,0,0,0,0,6,0],
+            [8,0,0,0,6,0,0,0,3],
+            [4,0,0,8,0,3,0,0,1],
+            [7,0,0,0,2,0,0,0,6],
+            [0,6,0,0,0,0,2,8,0],
+            [0,0,0,4,1,9,0,0,5],
+            [0,0,0,0,8,0,0,7,9]]
+    
+    solved = solve(puzzle)
+    print(np.matrix(solved))
