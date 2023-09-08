@@ -1,0 +1,9 @@
+HOW IT WORKS
+1. Iterate through all squares
+2. Check if the square has only one possibility
+3. If so, put only possible number in the place
+4. Puting new number should give us another square with only one possibility
+5. Repeat :D
+
+
+DISCLAIMER - It will only work with simple sudoku puzzles
